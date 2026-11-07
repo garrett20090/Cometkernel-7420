@@ -1,0 +1,2 @@
+obj-$(CONFIG_SOC_EXYNOS7420) += gud-exynos7420/
+obj-$(CONFIG_TRUSTONIC_TRUSTED_UI) += TlcTui/

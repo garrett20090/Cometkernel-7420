@@ -1,0 +1,59 @@
+/*
+ * First-stage mount of SYSTEM and VENDOR for the One UI 7 port (Galaxy S6, G920F).
+ * Same layout as the Exynos 8890 port: init reads these nodes from the device tree.
+ */
+
+/ {
+	firmware {
+		android {
+			compatible = "android,firmware";
+
+			fstab {
+				compatible = "android,fstab";
+
+				/* EFS is mounted later by the vendor fstab at /mnt/vendor/efs */
+				/delete-node/ efs;
+
+				system {
+					compatible = "android,system";
+					dev = "/dev/block/platform/15570000.ufs/by-name/SYSTEM";
+					type = "ext4";
+					mnt_flags = "ro";
+					fsmgr_flags = "wait";
+				};
+
+				vendor {
+					compatible = "android,vendor";
+					dev = "/dev/block/platform/15570000.ufs/by-name/VENDOR";
+					type = "ext4";
+					mnt_flags = "ro";
+					fsmgr_flags = "wait";
+				};
+
+				/*
+				 * metadata: Android 15 lo pretende (chiavi FBE, apex sessions).
+				 * L'S6 non ce l'ha di serie: la crea lo zip di ripartizione.
+				 */
+				metadata {
+					compatible = "android,metadata";
+					dev = "/dev/block/platform/15570000.ufs/by-name/METADATA";
+					type = "ext4";
+					mnt_flags = "noatime,nosuid,nodev,discard";
+					fsmgr_flags = "wait,check,formattable,first_stage_mount";
+				};
+
+				/*
+				 * data: primo avvio SENZA cifratura, cosi' monta in lettura/scrittura
+				 * (niente FBE finche' keystore/keymaster non funzionano).
+				 */
+				userdata {
+					compatible = "android,userdata";
+					dev = "/dev/block/platform/15570000.ufs/by-name/USERDATA";
+					type = "ext4";
+					mnt_flags = "noatime,nosuid,nodev,noauto_da_alloc,discard";
+					fsmgr_flags = "wait,check,formattable";
+				};
+			};
+		};
+	};
+};

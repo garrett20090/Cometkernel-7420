@@ -1,0 +1,14 @@
+# 核心編譯產生的產物
+.config
+.config.old
+*.o
+*.ko
+*.cmd
+*.d
+*.mod.c
+*.order
+Module.symvers
+arch/arm64/boot/Image*
+arch/arm64/boot/dts/*.dtb
+arch/arm64/boot/compressed/
+.tmp_*

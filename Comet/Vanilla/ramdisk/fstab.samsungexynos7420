@@ -1,0 +1,7 @@
+/dev/block/platform/15570000.ufs/by-name/SYSTEM    /system    ext4  ro,barrier=1                                                wait,first_stage_mount
+/dev/block/platform/15570000.ufs/by-name/VENDOR    /vendor    ext4  ro,barrier=1                                                wait,first_stage_mount
+/dev/block/platform/15570000.ufs/by-name/METADATA  /metadata  ext4  noatime,nosuid,nodev,discard                                wait,formattable,first_stage_mount
+
+/dev/block/platform/15570000.ufs/by-name/CACHE     /cache     ext4  noatime,nosuid,nodev,noauto_da_alloc,discard,errors=remount-ro   wait,formattable
+/dev/block/platform/15570000.ufs/by-name/USERDATA  /data      ext4  noatime,nosuid,nodev,noauto_da_alloc,discard,errors=remount-ro   wait,formattable,quota
+/dev/block/platform/15570000.ufs/by-name/EFS       /mnt/vendor/efs  ext4  noatime,nosuid,nodev,noauto_da_alloc,discard,errors=remount-ro  wait

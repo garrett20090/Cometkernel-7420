@@ -1,0 +1,9 @@
+#
+# Mobicore Configuration
+#
+
+if SOC_EXYNOS7420
+source "drivers/gud/gud-exynos7420/Kconfig"
+endif
+
+source "drivers/gud/TlcTui/Kconfig"

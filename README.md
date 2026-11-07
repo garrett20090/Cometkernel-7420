@@ -9,7 +9,8 @@ Custom Linux Kernel tailored for running **One UI 7 (Android 15)** on the Samsun
 - QCOM Modem issues
 
 ## Building the Source Code
-If you want to compile the source code, just type `./comet` in the kernel directory.
+If you want to compile the source code, just type `./comet.sh` in the kernel directory.
+The packaged output files will be located in `/Comet/Product`.
 
 ## License
 This project is licensed under the **GNU General Public License v2.0 (GPLv2)**. See the `COPYING` file for details.

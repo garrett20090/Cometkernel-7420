@@ -16,6 +16,7 @@
 #include "exynos7420-a8xelte_modem-shannon_ds.dtsi"
 #include "exynos7420-a8xelte_fingerprint-sensor_01.dtsi"
 #include "exynos7420-a8xelte_mst.dtsi"
+#include "exynos7420-zeroflte_android_fstab.dtsi"
 
 / {
 	model = "Samsung A8XE LTE MEA JT rev02 board based on Exynos7420(EVT1), mPOP";

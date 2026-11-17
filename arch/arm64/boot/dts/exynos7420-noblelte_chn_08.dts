@@ -952,3 +952,10 @@
 		status = "okay";
 	};
 };
+
+&pinctrl_9 {
+	sleep9: sleep-state {
+		PIN_SLP(gpr2-0, OUT0, DOWN);	/* ESE_PWR_REQ */
+	};
+};
+#include "exynos7420-zeroflte_android_fstab.dtsi"

@@ -727,3 +727,5 @@
 	};
 */
 };
+
+#include "exynos7420-zeroflte_android_fstab.dtsi"

@@ -13,6 +13,7 @@
  *
  */
 
+#include <linux/module.h>
 #include "ssp_misc.h"
 
 static struct remove_af_noise af_sensor;
@@ -55,3 +56,6 @@ void report_shake_cam_data(struct ssp_data *data,
 		ssp_errf("no af_func");
 	}
 }
+
+EXPORT_SYMBOL(remove_af_noise_register);
+EXPORT_SYMBOL(remove_af_noise_unregister);

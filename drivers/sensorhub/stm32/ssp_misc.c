@@ -55,3 +55,6 @@ void report_shake_cam_data(struct ssp_data *data,
 		ssp_errf("no af_func");
 	}
 }
+
+EXPORT_SYMBOL(remove_af_noise_register);
+EXPORT_SYMBOL(remove_af_noise_unregister);

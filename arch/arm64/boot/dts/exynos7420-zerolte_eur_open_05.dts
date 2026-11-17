@@ -844,3 +844,5 @@
 		type_of_ddi = <0>;
 	};
 };
+
+#include "exynos7420-zeroflte_android_fstab.dtsi"

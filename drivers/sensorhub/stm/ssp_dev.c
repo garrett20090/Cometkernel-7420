@@ -1,3 +1,5 @@
+#define IS_EDGE 1
+static int variant_edge = IS_EDGE;
 /*
  *  Copyright (C) 2015, Samsung Electronics Co. Ltd. All Rights Reserved.
  *
@@ -14,6 +16,10 @@
  */
 
 #include "ssp_dev.h"
+#ifndef CONFIG_DONT_UNIFY_ME_PLS
+#include <linux/variant_detection.h>
+#endif
+
 /*
 extern int poweroff_charging;
 extern int boot_mode_recovery;
@@ -294,9 +300,18 @@ static int ssp_parse_dt(struct device *dev,
 
 	if (of_property_read_u32(np, "ssp,acc-dot", &data->accel_dot))
 		data->accel_dot = -1;
-
+#ifndef CONFIG_DONT_UNIFY_ME_PLS
+	if (variant_edge == IS_EDGE) {
+		if (of_property_read_u32(np, "ssp,mag-position_E", &data->mag_position))
+			data->mag_position = 0;
+	} else {
+		if (of_property_read_u32(np, "ssp,mag-position", &data->mag_position))
+			data->mag_position = 0;
+	}
+#else
 	if (of_property_read_u32(np, "ssp,mag-position", &data->mag_position))
 		data->mag_position = 0;
+#endif
 
 	ssp_info("acc-posi[%d] acc-dot[%d] mag-posi[%d]",
 			data->accel_position, data->accel_dot, data->mag_position);
@@ -314,6 +329,15 @@ static int ssp_parse_dt(struct device *dev,
 		data->uProxHiThresh_default, data->uProxLoThresh_default);
 
 #ifdef CONFIG_SENSORS_MULTIPLE_GLASS_TYPE
+#ifndef CONFIG_DONT_UNIFY_ME_PLS
+	if (variant_edge == IS_EDGE) {
+	    	if (of_property_read_u32(np, "ssp-glass-type_E", &data->glass_type))
+			    data->glass_type = 0;
+	} else {
+	    	if (of_property_read_u32(np, "ssp-glass-type", &data->glass_type))
+			    data->glass_type = 0;
+	}
+#else
 	if (of_property_read_u32(np, "ssp-glass-type", &data->glass_type))
 		    data->glass_type = 0;
 #endif
